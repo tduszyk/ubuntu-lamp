@@ -74,7 +74,7 @@
 
     - name: Enable the Drupal site.
       command: >
-        a2ensite {{ domain }}.test.conf
+        a2ensite {{ domain }}.test
         creates="/etc/apache2/sites-enabled/{{ domain }}.test.conf
       notify: restart apache
 
