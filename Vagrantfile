@@ -6,17 +6,12 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # General Vagrant VM conguration.
   config.vm.box = "geerlingguy/ubuntu2004"
+  config.vm.network :private_network, ip: "192.168.56.8"
+  config.vm.hostname = "drupal1.test"
   config.ssh.insert_key = false
-  config.vm.synced_folder ".", "/vagrant", disabled: true
+  
   config.vm.provider :virtualbox do |v|
      v.memory = 2048
-     v.linked_clone = true
-  end
-
-  # Application server 1.
-  config.vm.define "app1" do |app|
-     app.vm.hostname = "orc-app1.test"
-     app.vm.network :private_network, ip: "192.168.60.7"
   end
 
 #  # Ansible provisioning.
