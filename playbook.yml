@@ -141,6 +141,7 @@
         no_dev: true
       become_user: www-data
       when: not drupal_composer_json.stat.exists
+      
     - name: Add drush to the Drupal site with Composer.
       composer:
         command: require
