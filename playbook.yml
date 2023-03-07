@@ -10,7 +10,7 @@
       apt: update_cache=yes cache_valid_time=3600
 
   handlers:
-    - name: Restart apache
+    - name: restart apache
       service: name=apache2 state=restarted
 
   tasks:
@@ -47,9 +47,10 @@
           - php7.4-mysql
           - php-apcu
           - libpcre3-dev
-          - llibapache2-mod-php7.4
+          - libapache2-mod-php7.4
           - python3-mysqldb
           - mysql-server
+
     - name: Disable the firewall (since it's for local dev only).
       service: name=ufw state=stopped
 
@@ -86,7 +87,7 @@
 
     - name: Adjust OpCache memory setting.
       lineinfile:
-        dest: "/etc/php/7.4/apache2/conf.d/10-opache.ini"
+        dest: "/etc/php/7.4/apache2/conf.d/10-opcache.ini"
         regexp: "^opcache.memory_consumption"
         line: "opcache.memory_consumption = 96"
         state: present
